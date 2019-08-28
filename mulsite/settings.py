@@ -20,13 +20,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@o%*wdy6e-!6c+_a3bs$2#zcha)@3%qpte59s!6h)73mo$@wd!'
+SECRET_KEY = 'insecure-secret-key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'alpha.devsite',
+    'bravo.devsite',
+    'charlie.devsite',
+]
 
+
+# https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-SITE_ID
+# Set the default Site (django.contrib.sites.models.Site)
+# Need to disable to run multisite domains
+# SITE_ID = 1
 
 # Application definition
 
@@ -36,7 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'mulsite',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +132,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        # For demonstration. In production, you likely want to enforce authorization
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}

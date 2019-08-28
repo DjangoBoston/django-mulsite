@@ -1,0 +1,8 @@
+Django==2.2.4
+djangorestframework
+
+# Test packages
+pytest
+flake8
+factory-boy
+pytest-django

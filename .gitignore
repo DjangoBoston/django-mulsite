@@ -116,7 +116,7 @@ frontend/webpack-stats.json
 *.sublime-workspace
 
 # SQLite
-devsite/*.sqlite3
+*.sqlite3
 
 # Vi, Vim, swap
 *.swp
