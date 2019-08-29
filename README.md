@@ -4,6 +4,8 @@
 
 This demo shows how the Django Sites Framework can be used to filter content based on the domain in the request header.
 
+Slides: http://bit.ly/201908-djabos-john
+
 ## Django Sites Framework official docs
 
 https://docs.djangoproject.com/en/2.2/ref/contrib/sites/
@@ -39,11 +41,22 @@ To show requests with different domains, update your `hosts` files as follows:
 127.0.0.1 charlie.devsite
 ```
 
-### INitializing and starting the development server
+### Python virtual environment (venv)
 
-First, create a virtualenv and then run `pip install -r requirements.txt`
+*This demo requires Python 3*
 
-Then
+Create a virtualenv and then run `pip install -r requirements.txt`
+
+### Run the tests (well, the single test for now)
+
+With your Python 3 virtualenv active
+
+```
+pytest
+```
+
+### Initializing and starting the development server
+
 ```
 ./manage.py migrate
 ./manage.py createsuperuser
@@ -52,10 +65,14 @@ Then
 
 ```
 
-### settings.py
 
 
-#### ALLOWED_HOSTS
+## Settings
+
+The purpose of this section is to provide configuration information for `settings.py`
+
+
+### ALLOWED_HOSTS
 
 For our demo, we hardcoded `ALLOWED_HOSTS` to serve the domains we aded to our `hosts` file
 
@@ -67,7 +84,7 @@ ALLOWED_HOSTS = [
 ]
 ```
 
-#### Default site identifier
+### Default site identifier
 
 TODO: Explain how `SITE_ID` affects multisite behavior
 
@@ -82,21 +99,20 @@ see https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-SITE_ID
 After you have initialized and started the development server, access the site:
 
 You will need to log in with your superuser account to view data in the `admin` console:
-http://alpha.devsite:8000/admin/
+
+* http://alpha.devsite:8000/admin/
 
 You will not need authentication to access the API
 
-http://alpha.devsite:8000/core/api/
+* http://alpha.devsite:8000/core/api/
 
 This demo shows users filtered per site
 
-http://alpha.devsite:8000/core/api/users/
+* http://alpha.devsite:8000/core/api/users/
 
-http://bravo.devsite:8000/core/api/users/
+* http://bravo.devsite:8000/core/api/users/
 
-http://charlie.devsite:8000/core/api/users/
-
-
+* http://charlie.devsite:8000/core/api/users/
 
 
 # Permissions
